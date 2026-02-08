@@ -25,7 +25,7 @@ function NotFoundPage() {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/Nestiva_Reality">
       <Routes>
         <Route element={<SiteLayout />}>
           <Route element={<HomePage />} index />
