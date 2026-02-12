@@ -26,35 +26,61 @@ export default function ProjectDetailPage() {
         <h1>
           {project.name} - {project.area}
         </h1>
+        <p>{project.zone}</p>
       </header>
 
-      <section className="section">
-        <div className="gallery">
-          {project.images.map((image, index) => (
-            <img alt={`${project.name} view ${index + 1}`} key={image} loading="lazy" src={image} />
-          ))}
+      <section className="detail-card project-overview">
+        <img alt={`${project.name} main view`} className="project-hero-image" loading="lazy" src={project.images[0]} />
+        <div className="project-meta">
+          <h2>Project Details</h2>
+          <div className="meta-grid">
+            <div className="meta-item">
+              <span>Location</span>
+              <strong>{project.area}</strong>
+            </div>
+            <div className="meta-item">
+              <span>Zone</span>
+              <strong>{project.zone}</strong>
+            </div>
+            <div className="meta-item">
+              <span>Configurations</span>
+              <strong>{project.configurations}</strong>
+            </div>
+            <div className="meta-item">
+              <span>Price Band</span>
+              <strong>{project.priceBand}</strong>
+            </div>
+            <div className="meta-item">
+              <span>Status</span>
+              <strong>{project.status}</strong>
+            </div>
+            <div className="meta-item">
+              <span>Approvals</span>
+              <strong>{project.approvals}</strong>
+            </div>
+            {project.sqftRange ? (
+              <div className="meta-item">
+                <span>SFT Range</span>
+                <strong>{project.sqftRange}</strong>
+              </div>
+            ) : null}
+            {project.numberOfFloors ? (
+              <div className="meta-item">
+                <span>Number of Floors</span>
+                <strong>{project.numberOfFloors}</strong>
+              </div>
+            ) : null}
+            {project.totalUnits ? (
+              <div className="meta-item">
+                <span>Number of Units</span>
+                <strong>{project.totalUnits}</strong>
+              </div>
+            ) : null}
+          </div>
         </div>
       </section>
 
       <section className="details-grid">
-        <article className="detail-card">
-          <h2>Key Details</h2>
-          <ul className="detail-list">
-            <li>
-              <strong>Configurations:</strong> {project.configurations}
-            </li>
-            <li>
-              <strong>Price Band:</strong> {project.priceBand}
-            </li>
-            <li>
-              <strong>Possession:</strong> {project.status}
-            </li>
-            <li>
-              <strong>Approvals:</strong> {project.approvals}
-            </li>
-          </ul>
-        </article>
-
         <article className="detail-card">
           <h3>Highlights</h3>
           <ul className="highlight-list">
@@ -63,6 +89,45 @@ export default function ProjectDetailPage() {
             ))}
           </ul>
         </article>
+        {project.nearbyPlaces ? (
+          <article className="detail-card">
+            <h3>Nearby Places</h3>
+            <div className="nearby-grid">
+              <div>
+                <strong>Schools</strong>
+                <ul className="highlight-list">
+                  {project.nearbyPlaces.schools.map((place) => (
+                    <li key={place}>{place}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <strong>Hospitals</strong>
+                <ul className="highlight-list">
+                  {project.nearbyPlaces.hospitals.map((place) => (
+                    <li key={place}>{place}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <strong>IT Corridor</strong>
+                <ul className="highlight-list">
+                  {project.nearbyPlaces.itCorridor.map((place) => (
+                    <li key={place}>{place}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <strong>Malls</strong>
+                <ul className="highlight-list">
+                  {project.nearbyPlaces.malls.map((place) => (
+                    <li key={place}>{place}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </article>
+        ) : null}
       </section>
 
       <section className="detail-card who-fit">

@@ -1,7 +1,13 @@
 import type { FormEvent } from 'react'
 import { useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { getWhatsAppLink } from '../constants'
+import {
+  CONTACT_EMAIL,
+  CONTACT_PHONE_DISPLAY,
+  getMailToLink,
+  getSmsLink,
+  getWhatsAppLink,
+} from '../constants'
 import { projectBySlug } from '../data/projects'
 
 export default function ContactPage() {
@@ -16,6 +22,25 @@ export default function ContactPage() {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    const formData = new FormData(event.currentTarget)
+    const name = String(formData.get('name') ?? '')
+    const phone = String(formData.get('phone') ?? '')
+    const budget = String(formData.get('budget') ?? '')
+    const location = String(formData.get('location') ?? '')
+    const timeline = String(formData.get('timeline') ?? '')
+    const enquiryMessage = String(formData.get('message') ?? '')
+
+    const notificationText =
+      `New enquiry from Nestiva Realty website\n` +
+      `Name: ${name}\n` +
+      `Phone: ${phone}\n` +
+      `Budget: ${budget}\n` +
+      `Preferred Location: ${location}\n` +
+      `Timeline: ${timeline}\n` +
+      `Message: ${enquiryMessage || 'N/A'}`
+
+    window.open(getMailToLink('New Website Enquiry', notificationText), '_blank', 'noopener,noreferrer')
+    window.open(getSmsLink(notificationText), '_blank', 'noopener,noreferrer')
     navigate('/thank-you')
   }
 
@@ -86,6 +111,18 @@ export default function ContactPage() {
 
         <div className="alternate-contact">
           <div>
+            Phone:{' '}
+            <a className="text-link" href={`tel:${CONTACT_PHONE_DISPLAY.replace(/-/g, '')}`}>
+              {CONTACT_PHONE_DISPLAY}
+            </a>
+          </div>
+          <div>
+            Email:{' '}
+            <a className="text-link" href={`mailto:${CONTACT_EMAIL}`}>
+              {CONTACT_EMAIL}
+            </a>
+          </div>
+          <div>
             WhatsApp:{' '}
             <a
               className="text-link"
@@ -96,6 +133,7 @@ export default function ContactPage() {
               Click to Chat
             </a>
           </div>
+          <div>On submit, your email and SMS app will open with the enquiry details prefilled.</div>
           <div>Site Visits: Weekends (10 AM - 6 PM)</div>
         </div>
       </section>

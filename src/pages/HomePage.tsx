@@ -1,9 +1,11 @@
 import type { FormEvent } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { getWhatsAppLink } from '../constants'
 import { projects } from '../data/projects'
 
-const featuredProjects = projects.slice(0, 6)
+const featuredProjects = projects
+const heroSlides = projects.map((project) => ({ image: project.images[0], name: project.name }))
 
 const faqs = [
   {
@@ -22,32 +24,68 @@ const faqs = [
 
 export default function HomePage() {
   const navigate = useNavigate()
+  const [activeSlide, setActiveSlide] = useState(0)
+  const featuredScrollRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    if (heroSlides.length < 2) return
+
+    const intervalId = window.setInterval(() => {
+      setActiveSlide((current) => (current + 1) % heroSlides.length)
+    }, 3800)
+
+    return () => window.clearInterval(intervalId)
+  }, [])
 
   function handleLeadSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     navigate('/thank-you')
   }
 
+  function scrollFeatured(direction: 'left' | 'right') {
+    if (!featuredScrollRef.current) return
+    const firstCard = featuredScrollRef.current.querySelector<HTMLElement>('.featured-card')
+    const containerStyles = window.getComputedStyle(featuredScrollRef.current)
+    const gap = Number.parseFloat(containerStyles.columnGap || containerStyles.gap || '0')
+    const step = (firstCard?.offsetWidth ?? 320) + gap
+    const delta = direction === 'left' ? -step : step
+    featuredScrollRef.current.scrollBy({ left: delta, behavior: 'smooth' })
+  }
+
   return (
     <div className="page home-page">
       <section className="hero">
-        <h1>Curated Homes Across Hyderabad</h1>
-        <p>
-          Verified ready and near-ready homes, resale properties, and select projects shortlisted based on
-          budget, location, and timeline.
-        </p>
-        <div className="button-row">
-          <Link className="button button-primary" to="/projects">
-            View Projects
-          </Link>
-          <a
-            className="button button-secondary"
-            href={getWhatsAppLink('Hi Nestiva Realty, I am looking for curated options in Hyderabad.')}
-            rel="noreferrer"
-            target="_blank"
-          >
-            WhatsApp Us
-          </a>
+        <div aria-hidden="true" className="hero-carousel">
+          {heroSlides.map((slide, index) => (
+            <img
+              alt={slide.name}
+              className={index === activeSlide ? 'hero-slide active' : 'hero-slide'}
+              key={slide.image}
+              loading="lazy"
+              src={slide.image}
+            />
+          ))}
+        </div>
+        <div className="hero-overlay" />
+        <div className="hero-content">
+          <h1>Curated Homes Across Hyderabad</h1>
+          <p>
+            Verified residential and commercial opportunities shortlisted based on budget, location, and
+            timeline.
+          </p>
+          <div className="button-row">
+            <Link className="button button-primary" to="/projects">
+              View Projects
+            </Link>
+            <a
+              className="button button-secondary"
+              href={getWhatsAppLink('Hi Nestiva Realty, I am looking for curated options in Hyderabad.')}
+              rel="noreferrer"
+              target="_blank"
+            >
+              WhatsApp Us
+            </a>
+          </div>
         </div>
       </section>
 
@@ -62,11 +100,32 @@ export default function HomePage() {
         <p className="muted">We shortlist properties so you don't waste weekends visiting unsuitable options.</p>
       </section>
 
-      <section className="section">
-        <h2 className="section-title">Featured Projects</h2>
-        <div className="project-grid">
+      <section className="section featured-strip">
+        <div className="featured-strip-header">
+          <h2 className="section-title">Featured Projects</h2>
+          <div className="featured-controls">
+            <button
+              aria-label="Scroll projects left"
+              className="scroll-btn scroll-btn-left"
+              onClick={() => scrollFeatured('left')}
+              type="button"
+            >
+              ‹
+            </button>
+            <button
+              aria-label="Scroll projects right"
+              className="scroll-btn scroll-btn-right"
+              onClick={() => scrollFeatured('right')}
+              type="button"
+            >
+              ›
+            </button>
+          </div>
+        </div>
+        <div className="featured-scroll" ref={featuredScrollRef}>
           {featuredProjects.map((project) => (
-            <article className="project-card" key={project.slug}>
+            <article className="project-card featured-card" key={project.slug}>
+              <img alt={`${project.name} highlight`} className="featured-card-image" loading="lazy" src={project.images[0]} />
               <h3>{project.name}</h3>
               <p>{project.zone}</p>
               <p>Price Band: {project.priceBand}</p>

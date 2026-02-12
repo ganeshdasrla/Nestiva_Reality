@@ -8,14 +8,15 @@ export default function ProjectsPage() {
   const [status, setStatus] = useState('all')
   const [location, setLocation] = useState('all')
 
-  const locations = useMemo(() => Array.from(new Set(projects.map((project) => project.zone))), [])
+  const locations = useMemo(() => Array.from(new Set(projects.map((project) => project.area))), [])
+  const statuses = useMemo(() => Array.from(new Set(projects.map((project) => project.status))), [])
 
   const filteredProjects = useMemo(
     () =>
       projects.filter((project) => {
         const budgetMatch = budget === 'all' || project.budgetRange === budget
         const statusMatch = status === 'all' || project.status === status
-        const locationMatch = location === 'all' || project.zone === location
+        const locationMatch = location === 'all' || project.area === location
         return budgetMatch && statusMatch && locationMatch
       }),
     [budget, status, location],
@@ -44,8 +45,11 @@ export default function ProjectsPage() {
             Status
             <select id="status-filter" onChange={(event) => setStatus(event.target.value)} value={status}>
               <option value="all">All status</option>
-              <option value="Ready">Ready</option>
-              <option value="Near-Ready">Near-Ready</option>
+              {statuses.map((projectStatus) => (
+                <option key={projectStatus} value={projectStatus}>
+                  {projectStatus}
+                </option>
+              ))}
             </select>
           </label>
 
@@ -65,6 +69,11 @@ export default function ProjectsPage() {
         <div className="project-grid">
           {filteredProjects.map((project) => (
             <article className="project-card" key={project.slug}>
+              <div className="project-preview">
+                {project.images.slice(0, 2).map((image, index) => (
+                  <img alt={`${project.name} preview ${index + 1}`} key={image} loading="lazy" src={image} />
+                ))}
+              </div>
               <h3>{project.name}</h3>
               <p>Area: {project.area}</p>
               <p>Configurations: {project.configurations}</p>
@@ -72,9 +81,22 @@ export default function ProjectsPage() {
               <p>Possession Status: {project.status}</p>
 
               <div className="card-actions">
+                <Link className="button button-secondary" to={`/projects/${project.slug}`}>
+                  Project Details
+                </Link>
                 <Link className="button button-secondary" to={`/contact?project=${project.slug}`}>
                   Get Price Sheet
                 </Link>
+                {project.website ? (
+                  <a
+                    className="button button-secondary"
+                    href={project.website}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    Visit Website
+                  </a>
+                ) : null}
                 <a
                   className="button button-ghost"
                   href={getWhatsAppLink(`Hi Nestiva Realty, please share details for ${project.name}.`)}

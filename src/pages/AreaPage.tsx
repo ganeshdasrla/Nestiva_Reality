@@ -4,15 +4,15 @@ export default function AreaPage() {
   return (
     <div className="page">
       <header className="page-header">
-        <h1>Living in Hyderabad</h1>
+        <h1>Project Locations</h1>
       </header>
 
       <section className="section">
         <ul className="highlight-list">
-          <li>Popular residential zones</li>
-          <li>Price band overview</li>
-          <li>Ready vs under-construction guidance</li>
-          <li>Investment vs self-use considerations</li>
+          <li>Tellapur - Nivasa</li>
+          <li>Adibatla - LaCasa</li>
+          <li>Kokapet - One Downtown</li>
+          <li>Narsingi - MoonGlade</li>
         </ul>
       </section>
 
