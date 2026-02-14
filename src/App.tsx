@@ -30,7 +30,7 @@ function LegacyProjectRedirect() {
 
 export default function App() {
   return (
-    <BrowserRouter basename="/Nestiva_Reality">
+    <BrowserRouter basename="/">
       <Routes>
         <Route element={<SiteLayout />}>
           <Route element={<HomePage />} index />
