@@ -24,3 +24,8 @@ dist-ssr
 *.sw?
 
 testclone2/
+tmp/belmond-brochure.pdf
+tmp/belmond-brochure.pdf.png
+tmp/belmond-price-sheet.pdf
+tmp/belmond-price-sheet.pdf.png
+public/projects/fallback-property.svg

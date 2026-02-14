@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { getWhatsAppLink } from '../constants'
 import { projects } from '../data/projects'
+import { handleProjectImageError } from '../utils/imageFallback'
 
 const featuredProjects = projects
 const heroSlides = projects.map((project) => ({ image: project.images[0], name: project.name }))
@@ -69,6 +70,7 @@ export default function HomePage() {
               className={index === activeSlide ? 'hero-slide active' : 'hero-slide'}
               key={slide.image}
               loading="lazy"
+              onError={handleProjectImageError}
               src={slide.image}
             />
           ))}
@@ -132,7 +134,13 @@ export default function HomePage() {
         <div className="featured-scroll" ref={featuredScrollRef}>
           {featuredProjects.map((project) => (
             <article className="project-card featured-card" key={project.slug}>
-              <img alt={`${project.name} highlight`} className="featured-card-image" loading="lazy" src={project.images[0]} />
+              <img
+                alt={`${project.name} highlight`}
+                className="featured-card-image"
+                loading="lazy"
+                onError={handleProjectImageError}
+                src={project.images[0]}
+              />
               <h3>{project.name}</h3>
               <p>{project.zone}</p>
               <p>Price Band: {project.priceBand}</p>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { getWhatsAppLink } from '../constants'
 import type { BudgetRange, ProjectAssetType, ProjectStatus } from '../data/projects'
 import { projects } from '../data/projects'
+import { handleProjectImageError } from '../utils/imageFallback'
 
 const stageOrder: ProjectStatus[] = ['Ready to Move', 'Ongoing', 'Pre-Launch']
 const stageLabels: Record<ProjectStatus, string> = {
@@ -16,8 +17,10 @@ export default function ProjectsPage() {
   const [stage, setStage] = useState<'all' | ProjectStatus>('all')
   const [assetType, setAssetType] = useState<'all' | ProjectAssetType>('all')
   const [location, setLocation] = useState('all')
+  const [projectName, setProjectName] = useState('all')
 
   const locations = useMemo(() => Array.from(new Set(projects.map((project) => project.area))).sort(), [])
+  const projectNames = useMemo(() => Array.from(new Set(projects.map((project) => project.name))).sort(), [])
   const assetTypes = useMemo<ProjectAssetType[]>(
     () => Array.from(new Set(projects.map((project) => project.assetType))),
     [],
@@ -30,9 +33,10 @@ export default function ProjectsPage() {
         const stageMatch = stage === 'all' || project.status === stage
         const assetTypeMatch = assetType === 'all' || project.assetType === assetType
         const locationMatch = location === 'all' || project.area === location
-        return budgetMatch && stageMatch && assetTypeMatch && locationMatch
+        const projectNameMatch = projectName === 'all' || project.name === projectName
+        return budgetMatch && stageMatch && assetTypeMatch && locationMatch && projectNameMatch
       }),
-    [assetType, budget, stage, location],
+    [assetType, budget, stage, location, projectName],
   )
 
   const visibleStages = useMemo<ProjectStatus[]>(() => (stage === 'all' ? stageOrder : [stage]), [stage])
@@ -128,6 +132,18 @@ export default function ProjectsPage() {
               ))}
             </select>
           </label>
+
+          <label htmlFor="project-filter">
+            Project Name
+            <select id="project-filter" onChange={(event) => setProjectName(event.target.value)} value={projectName}>
+              <option value="all">All projects</option>
+              {projectNames.map((name) => (
+                <option key={name} value={name}>
+                  {name}
+                </option>
+              ))}
+            </select>
+          </label>
         </div>
 
         <p className="muted">Showing {filteredProjects.length} projects</p>
@@ -148,7 +164,13 @@ export default function ProjectsPage() {
                   <article className="project-card" key={project.slug}>
                     <div className="project-preview">
                       {project.images.slice(0, 2).map((image, index) => (
-                        <img alt={`${project.name} preview ${index + 1}`} key={image} loading="lazy" src={image} />
+                        <img
+                          alt={`${project.name} preview ${index + 1}`}
+                          key={image}
+                          loading="lazy"
+                          onError={handleProjectImageError}
+                          src={image}
+                        />
                       ))}
                     </div>
                     <h3>{project.name}</h3>

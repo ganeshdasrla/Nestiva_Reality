@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { getWhatsAppLink } from '../constants'
 import { projectBySlug } from '../data/projects'
+import { handleProjectImageError } from '../utils/imageFallback'
 
 export default function ProjectDetailPage() {
   const { slug } = useParams()
@@ -32,7 +33,13 @@ export default function ProjectDetailPage() {
       </header>
 
       <section className="detail-card project-overview">
-        <img alt={`${project.name} main view`} className="project-hero-image" loading="lazy" src={project.images[0]} />
+        <img
+          alt={`${project.name} main view`}
+          className="project-hero-image"
+          loading="lazy"
+          onError={handleProjectImageError}
+          src={project.images[0]}
+        />
         <div className="project-meta">
           <h2>Project Details</h2>
           <div className="meta-grid">

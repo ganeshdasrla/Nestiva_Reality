@@ -1,11 +1,6 @@
 export type ProjectStatus = 'Ongoing' | 'Ready to Move' | 'Pre-Launch'
 export type BudgetRange = 'under-2' | '2-3' | 'above-3'
 export type ProjectAssetType = 'Apartment' | 'Villa' | 'Commercial'
-import patancheru1 from '../assets/projects/prr/patancheru-1.jpg'
-import patancheru2 from '../assets/projects/prr/patancheru-2.jpg'
-import patancheru3 from '../assets/projects/prr/patancheru-3.jpg'
-import patancheru4 from '../assets/projects/prr/patancheru-4.jpg'
-import patancheru5 from '../assets/projects/prr/patancheru-5.jpg'
 import venetia1 from '../assets/projects/prr/venetia-1.jpg'
 import venetia2 from '../assets/projects/prr/venetia-2.jpg'
 import venetia3 from '../assets/projects/prr/venetia-3.jpg'
@@ -45,6 +40,9 @@ export interface Project {
   images: string[]
 }
 
+const belmondBrochureCover = `${import.meta.env.BASE_URL}projects/belmond/brochure-cover.png`
+const belmondPriceSheet = `${import.meta.env.BASE_URL}projects/belmond/price-sheet.png`
+
 const imageGallery = {
   nivasa: [
     'https://elegantnivasa.com/wp-content/uploads/2025/03/EN-G-1.webp',
@@ -79,11 +77,37 @@ const imageGallery = {
     'https://static.wixstatic.com/media/0405a1_448e975d5e2b488d97669961c607f139~mv2.png/v1/crop/x_0%2Cy_85%2Cw_424%2Ch_474/fill/w_424%2Ch_474%2Cal_c%2Cq_85%2Cenc_avif%2Cquality_auto/Untitled%20design%20%282%29.png',
   ],
   candeurLakescape: [
-    'https://backend.candeur.in/uploads/East_Elevation_shot_ani_00000_121d8f4569.jpg',
-    'https://backend.candeur.in/uploads/Aerial_Day_shot_ani_00044_22980ddb13.jpg',
-    'https://backend.candeur.in/uploads/Aerial_West_view_0374c072c0.jpg',
-    'https://backend.candeur.in/uploads/Boxing_Den_2392719980.jpg',
-    'https://backend.candeur.in/uploads/Clubhouse_view_2c9f06db0a.jpg',
+    'https://www.candeur.in/_next/image?q=75&url=https%3A%2F%2Fbackend.candeur.in%2Fuploads%2FRectangle_22_3_027700dfe6.png&w=1080',
+    'https://www.candeur.in/_next/image?q=75&url=https%3A%2F%2Fbackend.candeur.in%2Fuploads%2FGroup_1000010630_2_f4d3174fd1.png&w=1920',
+    'https://www.candeur.in/_next/image?q=75&url=https%3A%2F%2Fbackend.candeur.in%2Fuploads%2FEast_Elevation_shot_ani_00000_121d8f4569.jpg&w=1080',
+    'https://www.candeur.in/_next/image?q=75&url=https%3A%2F%2Fbackend.candeur.in%2Fuploads%2FAerial_Day_shot_ani_00044_22980ddb13.jpg&w=1080',
+    'https://www.candeur.in/_next/image?q=75&url=https%3A%2F%2Fbackend.candeur.in%2Fuploads%2FAerial_West_view_0374c072c0.jpg&w=1080',
+  ],
+  candeurSkyline: [
+    'https://www.candeur.in/_next/image?q=75&url=https%3A%2F%2Fbackend.candeur.in%2Fuploads%2FRectangle_22_04c6a7bd9a.png&w=1080',
+    'https://www.candeur.in/_next/image?q=75&url=https%3A%2F%2Fbackend.candeur.in%2Fuploads%2FGroup_1000010630_4e9c743e3a.png&w=1920',
+    'https://www.candeur.in/_next/image?q=75&url=https%3A%2F%2Fbackend.candeur.in%2Fuploads%2FCS_028_Balcony_ORR_8_K_959c0749b0.jpg&w=1080',
+    'https://www.candeur.in/_next/image?q=75&url=https%3A%2F%2Fbackend.candeur.in%2Fuploads%2FCS_020_Banquet_Hall_8_K_f2601cc7f6.jpg&w=1080',
+    'https://www.candeur.in/_next/image?q=75&url=https%3A%2F%2Fbackend.candeur.in%2Fuploads%2FCS_019_Preview_Theater_8_K_af2488133a.jpg&w=1080',
+  ],
+  candeurCrescent: [
+    'https://candeur.in/_next/image?q=75&url=https%3A%2F%2Fbackend.candeur.in%2Fuploads%2FRectangle_22_4_3a5c4e2067.png&w=1080',
+    'https://candeur.in/_next/image?q=75&url=https%3A%2F%2Fbackend.candeur.in%2Fuploads%2Fmaster_plan_cercent_1_2_93a2157ae2.png&w=1920',
+    'https://candeur.in/_next/image?q=75&url=https%3A%2F%2Fbackend.candeur.in%2Fuploads%2FGroup_1000010726_5_da6a530f86.png&w=750',
+    'https://candeur.in/_next/image?q=75&url=https%3A%2F%2Fbackend.candeur.in%2Fuploads%2FGroup_1000010726_6_02ffa2573c.png&w=750',
+  ],
+  candeurTwins: [
+    'https://www.candeur.in/_next/image?q=75&url=https%3A%2F%2Fbackend.candeur.in%2Fuploads%2FRectangle_22_2_85b73547d4.png&w=1080',
+    'https://www.candeur.in/_next/image?q=75&url=https%3A%2F%2Fbackend.candeur.in%2Fuploads%2FGroup_1000010630_1_ef8dfb8c70.png&w=1920',
+    'https://www.candeur.in/_next/image?q=75&url=https%3A%2F%2Fbackend.candeur.in%2Fuploads%2FGroup_1000010726_10_52073c5de1.png&w=750',
+    'https://www.candeur.in/_next/image?q=75&url=https%3A%2F%2Fbackend.candeur.in%2Fuploads%2FGroup_1000010709_7ed38242ee.png&w=750',
+  ],
+  candeurNovoGardenia: [
+    'https://candeur.in/_next/image?q=75&url=https%3A%2F%2Fbackend.candeur.in%2Fuploads%2F5b54e760568b07c9d3414a46a83653f79df9b770_641392e335.jpg&w=3840',
+    'https://candeur.in/_next/image?q=75&url=https%3A%2F%2Fbackend.candeur.in%2Fuploads%2Fmaster_plan_cercent_1_1_23f91f4a4e.png&w=1920',
+    'https://candeur.in/_next/image?q=75&url=https%3A%2F%2Fbackend.candeur.in%2Fuploads%2FRectangle_22_10_e428907a79.png&w=1080',
+    'https://candeur.in/_next/image?q=75&url=https%3A%2F%2Fbackend.candeur.in%2Fuploads%2FRectangle_23_4_bebd223cd1.png&w=1080',
+    'https://candeur.in/_next/image?q=75&url=https%3A%2F%2Fbackend.candeur.in%2Fuploads%2FNew_Project_9_1_6c3494ed60.png&w=750',
   ],
   constella: [
     'https://constella.in/assets/images/gallery-image-13.webp',
@@ -106,13 +130,7 @@ const imageGallery = {
     venetia4,
     venetia5,
   ],
-  patancheru: [
-    patancheru1,
-    patancheru2,
-    patancheru3,
-    patancheru4,
-    patancheru5,
-  ],
+  belmondVillas: [belmondBrochureCover, belmondPriceSheet],
 }
 
 export const projects: Project[] = [
@@ -159,6 +177,97 @@ export const projects: Project[] = [
     suitableFor: 'Ideal for families wanting a large amenity-rich gated community in Kondapur.',
     notSuitableFor: 'Not suitable for buyers focused only on low-rise inventory.',
     images: imageGallery.candeurLakescape,
+  },
+  {
+    slug: 'candeur-skyline-puppalaguda',
+    name: 'Candeur Skyline',
+    numberOfFloors: 58,
+    area: 'Puppalaguda',
+    zone: 'West Hyderabad',
+    assetType: 'Apartment',
+    configurations: '3/4 BHK',
+    priceBand: 'On Request',
+    budgetRange: 'above-3',
+    status: 'Ongoing',
+    approvals: 'TS RERA: P02400003131',
+    highlights: [
+      'Premium high-rise project at Puppalaguda',
+      '58-floor towers as listed on official project page',
+      'Part of a large-format apartment community by Candeur',
+      'West Hyderabad connectivity towards Financial District corridor',
+    ],
+    suitableFor: 'Ideal for buyers targeting premium high-rise apartments in the Puppalaguda micro-market.',
+    notSuitableFor: 'Not suitable for buyers looking for low-rise or plotted formats.',
+    images: imageGallery.candeurSkyline,
+  },
+  {
+    slug: 'candeur-crescent-serilingampally',
+    name: 'Candeur Crescent',
+    sqftRange: '1333 SQ FT - 2656 SQ FT',
+    numberOfFloors: 50,
+    totalUnits: 1131,
+    area: 'Serilingampally',
+    zone: 'West Hyderabad',
+    assetType: 'Apartment',
+    configurations: '2/3 BHK',
+    priceBand: 'Starts from ₹8,999 per sq ft*',
+    budgetRange: '2-3',
+    status: 'Ongoing',
+    approvals: 'TS RERA: P02400002290',
+    highlights: [
+      '5 towers, each with 50 floors (as listed on official page)',
+      '1,131 apartments in a large gated format',
+      'Unit sizes from 1333 to 2656 sq ft',
+      'Possession timeline listed as December 2025',
+    ],
+    suitableFor: 'Ideal for apartment buyers seeking large gated inventory in Serilingampally.',
+    notSuitableFor: 'Not suitable for buyers requiring villa-only communities.',
+    images: imageGallery.candeurCrescent,
+  },
+  {
+    slug: 'candeur-twins-miyapur',
+    name: 'Candeur Twins',
+    area: 'Miyapur',
+    zone: 'West Hyderabad',
+    assetType: 'Apartment',
+    configurations: '3 BHK',
+    priceBand: 'On Request',
+    budgetRange: '2-3',
+    status: 'Ongoing',
+    approvals: 'Approval and RERA details to be confirmed on official page',
+    highlights: [
+      'Twin-tower residential concept in Miyapur',
+      'Official communication references a 3.5-acre integrated community',
+      'Positioned in established West Hyderabad residential corridor',
+      'Suitable for end-use apartment buyers',
+    ],
+    suitableFor: 'Ideal for buyers targeting established apartment locations in Miyapur.',
+    notSuitableFor: 'Not suitable for buyers who need fully published unit-level pricing online.',
+    images: imageGallery.candeurTwins,
+  },
+  {
+    slug: 'candeur-novo-gardenia-north-bengaluru',
+    name: 'Candeur Novo Gardenia',
+    sqftRange: '1495 SQ FT - 1795 SQ FT',
+    numberOfFloors: 14,
+    totalUnits: 332,
+    area: 'North Bengaluru',
+    zone: 'Bengaluru North',
+    assetType: 'Apartment',
+    configurations: '2/3 BHK',
+    priceBand: 'On Request',
+    budgetRange: 'under-2',
+    status: 'Ready to Move',
+    approvals: 'Karnataka RERA: PRM/KA/RERA/1251/309/PR/171014/000312',
+    highlights: [
+      '332 apartments across two blocks',
+      'G+14 structure as listed on official project page',
+      'Unit sizes from 1495 to 1795 sq ft',
+      'Located in North Bengaluru',
+    ],
+    suitableFor: 'Ideal for Bengaluru buyers seeking mid-sized 2/3 BHK inventory in North Bengaluru.',
+    notSuitableFor: 'Not suitable for Hyderabad-only location preferences.',
+    images: imageGallery.candeurNovoGardenia,
   },
   {
     slug: 'constella-tukkuguda',
@@ -273,27 +382,26 @@ export const projects: Project[] = [
     images: imageGallery.venetia,
   },
   {
-    slug: 'prr-patancheru-prelaunch',
-    name: 'PRR Patancheru Villas',
-    area: 'Patancheru',
+    slug: 'issara-belmond-villas-hyderabad',
+    name: 'Issara Belmond Villas',
+    area: 'Hyderabad',
     zone: 'West Hyderabad',
     assetType: 'Villa',
-    configurations: 'Villas (Pre-Launch)',
-    priceBand: 'On Request',
-    budgetRange: '2-3',
-    status: 'Pre-Launch',
-    amenitiesCount: 'To be announced',
-    keyAmenities: ['Amenity block and clubhouse scope to be announced by developer'],
-    approvals: 'Pre-launch stage - approvals and unit mix awaited',
+    configurations: 'Luxury Villas',
+    priceBand: 'Base: ₹14,000 per SFT + additional charges',
+    budgetRange: 'above-3',
+    status: 'Ongoing',
+    approvals: 'TS RERA: P02400006806 | HMDA LP No: 004245/LO/HMDA/0879/SMD/2023',
     highlights: [
-      'Patancheru pre-launch inventory under PRR developer network',
-      'Early-stage enquiry support available through Nestiva Realty',
-      'Suitable for buyers wanting first-phase allocation opportunities',
-      'Final brochure and tower-level details awaited',
+      'Regular/Base Price per SFT: ₹14,000',
+      'Corner charges: ₹10,00,000 | East-facing charges: ₹5,00,000',
+      'Park view charges: ₹5,00,000 | Amenities & infrastructure: ₹12,00,000',
+      'Club house: ₹12,00,000 | Debris removal: ₹1,00,000',
+      'Corpus fund: ₹5,00,000 | Legal/documentation: ₹25,000',
     ],
-    suitableFor: 'Ideal for early investors comfortable with pre-launch timelines.',
-    notSuitableFor: 'Not suitable for buyers who need immediate possession certainty.',
-    images: imageGallery.patancheru,
+    suitableFor: 'Ideal for buyers evaluating premium villa inventory with structured construction-linked payment schedule.',
+    notSuitableFor: 'Not suitable for buyers looking only for ready-to-move resale inventory.',
+    images: imageGallery.belmondVillas,
   },
   {
     slug: 'skyven-kokapet',
