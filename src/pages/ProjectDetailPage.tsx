@@ -147,6 +147,18 @@ export default function ProjectDetailPage() {
             </div>
           </article>
         ) : null}
+        {project.orrAccess ? (
+          <article className="detail-card">
+            <h3>ORR Exit Connectivity</h3>
+            <ul className="highlight-list">
+              {project.orrAccess.map((orr) => (
+                <li key={`${orr.exitPoint}-${orr.distance}`}>
+                  <strong>{orr.exitPoint}</strong>: {orr.distance} | {orr.travelTime}
+                </li>
+              ))}
+            </ul>
+          </article>
+        ) : null}
       </section>
 
       <section className="detail-card who-fit">
