@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
-import { CONTACT_PHONE_DISPLAY, getWhatsAppLink } from '../constants'
+import { CONTACT_PHONE_DISPLAY, INSTAGRAM_HANDLE, INSTAGRAM_URL, getWhatsAppLink } from '../constants'
 
 type NavigationItem =
   | { kind: 'route'; to: string; label: string }
@@ -95,6 +95,12 @@ export default function SiteLayout() {
         <div className="container footer-inner">
           <div className="footer-brand">Sri Nestiva PropTech</div>
           <div className="footer-tagline">Curated Homes Across Hyderabad</div>
+          <div className="footer-tagline">
+            Instagram:{' '}
+            <a className="text-link" href={INSTAGRAM_URL} rel="noreferrer" target="_blank">
+              @{INSTAGRAM_HANDLE}
+            </a>
+          </div>
           <div className="footer-legal">
             Sri Nestiva PropTech is an independent real estate channel partner. All information is indicative and
             subject to verification.

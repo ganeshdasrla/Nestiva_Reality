@@ -4,6 +4,8 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE_DISPLAY,
+  INSTAGRAM_HANDLE,
+  INSTAGRAM_URL,
   getMailToLink,
   getSmsLink,
   getWhatsAppLink,
@@ -131,6 +133,12 @@ export default function ContactPage() {
               target="_blank"
             >
               Click to Chat
+            </a>
+          </div>
+          <div>
+            Instagram:{' '}
+            <a className="text-link" href={INSTAGRAM_URL} rel="noreferrer" target="_blank">
+              @{INSTAGRAM_HANDLE}
             </a>
           </div>
           <div>On submit, your email and SMS app will open with the enquiry details prefilled.</div>
