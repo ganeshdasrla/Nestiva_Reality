@@ -1,4 +1,4 @@
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Link, Navigate, Route, Routes, useParams } from 'react-router-dom'
 import SiteLayout from './components/SiteLayout'
 import AboutPage from './pages/AboutPage'
 import AreaPage from './pages/AreaPage'
@@ -23,6 +23,11 @@ function NotFoundPage() {
   )
 }
 
+function LegacyProjectRedirect() {
+  const { slug } = useParams()
+  return <Navigate replace to={slug ? `/projects/${slug}` : '/projects'} />
+}
+
 export default function App() {
   return (
     <BrowserRouter basename="/Nestiva_Reality">
@@ -31,6 +36,7 @@ export default function App() {
           <Route element={<HomePage />} index />
           <Route element={<ProjectsPage />} path="/projects" />
           <Route element={<ProjectDetailPage />} path="/projects/:slug" />
+          <Route element={<LegacyProjectRedirect />} path="/project/:slug" />
           <Route element={<ContactPage />} path="/contact" />
           <Route element={<ThankYouPage />} path="/thank-you" />
           <Route element={<AboutPage />} path="/about" />

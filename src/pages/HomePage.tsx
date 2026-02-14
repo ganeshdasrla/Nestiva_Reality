@@ -6,6 +6,7 @@ import { projects } from '../data/projects'
 
 const featuredProjects = projects
 const heroSlides = projects.map((project) => ({ image: project.images[0], name: project.name }))
+const formatStatus = (status: (typeof projects)[number]['status']) => (status === 'Pre-Launch' ? 'Upcoming Villas' : status)
 
 const faqs = [
   {
@@ -135,7 +136,7 @@ export default function HomePage() {
               <h3>{project.name}</h3>
               <p>{project.zone}</p>
               <p>Price Band: {project.priceBand}</p>
-              <p>Status: {project.status}</p>
+              <p>Status: {formatStatus(project.status)}</p>
               <div className="card-actions">
                 <Link className="button button-secondary" to={`/projects/${project.slug}`}>
                   Get Details

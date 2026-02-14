@@ -20,6 +20,8 @@ export default function ProjectDetailPage() {
     )
   }
 
+  const statusLabel = project.status === 'Pre-Launch' ? 'Upcoming Villas' : project.status
+
   return (
     <div className="page">
       <header className="page-header">
@@ -52,8 +54,14 @@ export default function ProjectDetailPage() {
             </div>
             <div className="meta-item">
               <span>Status</span>
-              <strong>{project.status}</strong>
+              <strong>{statusLabel}</strong>
             </div>
+            {project.amenitiesCount ? (
+              <div className="meta-item">
+                <span>Amenities</span>
+                <strong>{project.amenitiesCount}</strong>
+              </div>
+            ) : null}
             <div className="meta-item">
               <span>Approvals</span>
               <strong>{project.approvals}</strong>
@@ -89,6 +97,17 @@ export default function ProjectDetailPage() {
             ))}
           </ul>
         </article>
+        {project.keyAmenities?.length ? (
+          <article className="detail-card">
+            <h3>Key Amenities</h3>
+            {project.amenitiesCount ? <p className="muted">Amenity Count: {project.amenitiesCount}</p> : null}
+            <ul className="highlight-list">
+              {project.keyAmenities.map((amenity) => (
+                <li key={amenity}>{amenity}</li>
+              ))}
+            </ul>
+          </article>
+        ) : null}
         {project.nearbyPlaces ? (
           <article className="detail-card">
             <h3>Nearby Places</h3>
