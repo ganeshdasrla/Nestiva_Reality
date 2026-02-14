@@ -1,13 +1,17 @@
-import { Link, NavLink, Outlet } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { CONTACT_PHONE_DISPLAY, getWhatsAppLink } from '../constants'
 
-const navigationItems = [
-  { to: '/projects', label: 'Projects' },
-  { to: '/resale', label: 'Resale' },
-  { to: '/areas/hyderabad', label: 'Areas' },
-  { to: '/about', label: 'About' },
-  { href: 'https://www.e-infra.in/', label: 'Building Partner' },
-  { to: '/contact', label: 'Contact' },
+type NavigationItem =
+  | { kind: 'route'; to: string; label: string }
+  | { kind: 'external'; href: string; label: string }
+
+const navigationItems: NavigationItem[] = [
+  { kind: 'route', to: '/projects', label: 'Projects' },
+  { kind: 'route', to: '/resale', label: 'Resale' },
+  { kind: 'route', to: '/areas/hyderabad', label: 'Areas' },
+  { kind: 'route', to: '/about', label: 'About' },
+  { kind: 'route', to: '/contact', label: 'Contact' },
 ]
 
 function getNavClassName(isActive: boolean): string {
@@ -15,6 +19,13 @@ function getNavClassName(isActive: boolean): string {
 }
 
 export default function SiteLayout() {
+  const location = useLocation()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  useEffect(() => {
+    setIsMenuOpen(false)
+  }, [location.pathname])
+
   return (
     <div className="site-shell">
       <header className="site-header">
@@ -24,20 +35,37 @@ export default function SiteLayout() {
             <span className="brand-tagline">Curated Homes Across Hyderabad</span>
           </Link>
 
-          <nav aria-label="Primary navigation" className="site-nav">
+          <button
+            aria-controls="site-nav"
+            aria-expanded={isMenuOpen}
+            className="nav-toggle"
+            onClick={() => setIsMenuOpen((current) => !current)}
+            type="button"
+          >
+            <span className="nav-toggle-icon" />
+            <span className="nav-toggle-label">{isMenuOpen ? 'Close menu' : 'Open menu'}</span>
+          </button>
+
+          <nav aria-label="Primary navigation" className={`site-nav${isMenuOpen ? ' is-open' : ''}`} id="site-nav">
             {navigationItems.map((item) => (
-              item.href ? (
+              item.kind === 'external' ? (
                 <a
                   key={item.href}
                   className="nav-link"
                   href={item.href}
+                  onClick={() => setIsMenuOpen(false)}
                   rel="noreferrer"
                   target="_blank"
                 >
                   {item.label}
                 </a>
               ) : (
-                <NavLink key={item.to} className={({ isActive }) => getNavClassName(isActive)} to={item.to}>
+                <NavLink
+                  key={item.to}
+                  className={({ isActive }) => getNavClassName(isActive)}
+                  onClick={() => setIsMenuOpen(false)}
+                  to={item.to}
+                >
                   {item.label}
                 </NavLink>
               )

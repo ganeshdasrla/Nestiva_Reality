@@ -1,4 +1,4 @@
-import type { FormEvent } from 'react'
+import type { CSSProperties, FormEvent } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { getWhatsAppLink } from '../constants'
@@ -26,6 +26,12 @@ export default function HomePage() {
   const navigate = useNavigate()
   const [activeSlide, setActiveSlide] = useState(0)
   const featuredScrollRef = useRef<HTMLDivElement | null>(null)
+  const trustBackgroundImage = heroSlides[activeSlide]?.image ?? heroSlides[0]?.image ?? ''
+  const trustSectionStyle: (CSSProperties & { '--trust-bg-image': string }) | undefined = trustBackgroundImage
+    ? {
+        '--trust-bg-image': `url("${trustBackgroundImage}")`,
+      }
+    : undefined
 
   useEffect(() => {
     if (heroSlides.length < 2) return
@@ -89,7 +95,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section trust-section" style={trustSectionStyle}>
         <h2 className="section-title">Trust</h2>
         <ul className="trust-list">
           <li>RERA-aware listings</li>

@@ -87,16 +87,6 @@ export default function ProjectsPage() {
                 <Link className="button button-secondary" to={`/contact?project=${project.slug}`}>
                   Get Price Sheet
                 </Link>
-                {project.website ? (
-                  <a
-                    className="button button-secondary"
-                    href={project.website}
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    Visit Website
-                  </a>
-                ) : null}
                 <a
                   className="button button-ghost"
                   href={getWhatsAppLink(`Hi Nestiva Realty, please share details for ${project.name}.`)}
