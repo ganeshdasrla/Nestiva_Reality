@@ -31,7 +31,7 @@ export default function SiteLayout() {
       <header className="site-header">
         <div className="container header-inner">
           <Link className="brand" to="/">
-            <span className="brand-name">Nestiva Realty</span>
+            <span className="brand-name">Sri Nestiva PropTech</span>
             <span className="brand-tagline">Curated Homes Across Hyderabad</span>
           </Link>
 
@@ -93,10 +93,10 @@ export default function SiteLayout() {
 
       <footer className="site-footer">
         <div className="container footer-inner">
-          <div className="footer-brand">Nestiva Realty</div>
+          <div className="footer-brand">Sri Nestiva PropTech</div>
           <div className="footer-tagline">Curated Homes Across Hyderabad</div>
           <div className="footer-legal">
-            Nestiva Realty is an independent real estate channel partner. All information is indicative and
+            Sri Nestiva PropTech is an independent real estate channel partner. All information is indicative and
             subject to verification.
           </div>
         </div>
@@ -105,7 +105,7 @@ export default function SiteLayout() {
       <a
         aria-label="Chat on WhatsApp"
         className="floating-whatsapp"
-        href={getWhatsAppLink('Hi Nestiva Realty, I would like to know more about available projects.')}
+        href={getWhatsAppLink('Hi Sri Nestiva PropTech, I would like to know more about available projects.')}
         rel="noreferrer"
         target="_blank"
       >

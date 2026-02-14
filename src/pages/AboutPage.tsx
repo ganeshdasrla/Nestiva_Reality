@@ -2,12 +2,12 @@ export default function AboutPage() {
   return (
     <div className="page">
       <header className="page-header">
-        <h1>About Nestiva Realty</h1>
+        <h1>About Sri Nestiva PropTech</h1>
       </header>
 
       <section className="section">
         <p>
-          Nestiva Realty is a Hyderabad-based real estate consultancy and independent channel partner.
+          Sri Nestiva PropTech is a Hyderabad-based real estate consultancy and independent channel partner.
         </p>
         <p>
           We focus on helping buyers make clear, informed decisions by shortlisting properties that match

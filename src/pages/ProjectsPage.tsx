@@ -171,7 +171,7 @@ export default function ProjectsPage() {
                       </Link>
                       <a
                         className="button button-ghost"
-                        href={getWhatsAppLink(`Hi Nestiva Realty, please share details for ${project.name}.`)}
+                        href={getWhatsAppLink(`Hi Sri Nestiva PropTech, please share details for ${project.name}.`)}
                         rel="noreferrer"
                         target="_blank"
                       >

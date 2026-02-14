@@ -16,7 +16,7 @@ export default function ResalePage() {
     <div className="page">
       <header className="page-header">
         <h1>Resale Properties</h1>
-        <p>Verified resale inventory curated by Nestiva Realty.</p>
+        <p>Verified resale inventory curated by Sri Nestiva PropTech.</p>
       </header>
 
       <section className="section">

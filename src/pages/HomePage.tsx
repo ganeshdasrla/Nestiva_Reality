@@ -86,7 +86,7 @@ export default function HomePage() {
             </Link>
             <a
               className="button button-secondary"
-              href={getWhatsAppLink('Hi Nestiva Realty, I am looking for curated options in Hyderabad.')}
+              href={getWhatsAppLink('Hi Sri Nestiva PropTech, I am looking for curated options in Hyderabad.')}
               rel="noreferrer"
               target="_blank"
             >

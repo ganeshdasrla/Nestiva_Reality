@@ -31,7 +31,7 @@ export default function ContactPage() {
     const enquiryMessage = String(formData.get('message') ?? '')
 
     const notificationText =
-      `New enquiry from Nestiva Realty website\n` +
+      `New enquiry from Sri Nestiva PropTech website\n` +
       `Name: ${name}\n` +
       `Phone: ${phone}\n` +
       `Budget: ${budget}\n` +
@@ -47,7 +47,7 @@ export default function ContactPage() {
   return (
     <div className="page">
       <header className="page-header">
-        <h1>Talk to Nestiva Realty</h1>
+        <h1>Talk to Sri Nestiva PropTech</h1>
         <p>Share your requirement and we'll shortlist the right options.</p>
       </header>
 
@@ -126,7 +126,7 @@ export default function ContactPage() {
             WhatsApp:{' '}
             <a
               className="text-link"
-              href={getWhatsAppLink('Hi Nestiva Realty, I want to discuss my requirement.')}
+              href={getWhatsAppLink('Hi Sri Nestiva PropTech, I want to discuss my requirement.')}
               rel="noreferrer"
               target="_blank"
             >
