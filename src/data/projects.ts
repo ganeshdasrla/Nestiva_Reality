@@ -42,6 +42,7 @@ export interface Project {
 
 const belmondBrochureCover = `${import.meta.env.BASE_URL}projects/belmond/brochure-cover.png`
 const belmondPriceSheet = `${import.meta.env.BASE_URL}projects/belmond/price-sheet.png`
+const sslrSuprabhathaBrochureCover = `${import.meta.env.BASE_URL}projects/sslr-suprabhatha/brochure-cover.png`
 
 const imageGallery = {
   nivasa: [
@@ -124,6 +125,7 @@ const imageGallery = {
     venetia5,
   ],
   belmondVillas: [belmondBrochureCover, belmondPriceSheet],
+  sslrSuprabhatha: [sslrSuprabhathaBrochureCover],
 }
 
 export const projects: Project[] = [
@@ -136,8 +138,8 @@ export const projects: Project[] = [
     zone: 'West Hyderabad',
     assetType: 'Apartment',
     configurations: '2 / 2.5 / 3 / 3.5 BHK',
-    priceBand: 'On Request',
-    budgetRange: '2-3',
+    priceBand: 'Starts from ₹1.8 Cr*',
+    budgetRange: 'above-3',
     status: 'Ongoing',
     amenitiesCount: '17',
     keyAmenities: [
@@ -321,7 +323,7 @@ export const projects: Project[] = [
     configurations: '4 BHK Triplex Villas',
     priceBand: 'On Request',
     budgetRange: 'above-3',
-    status: 'Ready to Move',
+    status: 'Ongoing',
     amenitiesCount: '15+',
     keyAmenities: [
       '15,528 sq ft clubhouse',
@@ -371,6 +373,27 @@ export const projects: Project[] = [
     suitableFor: 'Ideal for buyers evaluating premium villa inventory with structured construction-linked payment schedule.',
     notSuitableFor: 'Not suitable for buyers looking only for ready-to-move resale inventory.',
     images: imageGallery.belmondVillas,
+  },
+  {
+    slug: 'sslr-suprabhatha-villas-kollur',
+    name: 'SSLR Suprabhatha Villas',
+    sqftRange: '2960 SFT - 3690 SFT',
+    area: 'Visakha Road, Near Kollur',
+    zone: 'West Hyderabad',
+    assetType: 'Villa',
+    configurations: '180 & 200 Sq.Yds Villas',
+    priceBand: '₹2,58,60,000 - ₹3,20,65,000*',
+    budgetRange: '2-3',
+    status: 'Ongoing',
+    approvals: 'TS RERA: P01100009349',
+    highlights: [
+      '180 Sq.Yds villa total: ₹2,58,60,000 including ₹7,00,000 amenities',
+      '200 Sq.Yds villa total: ₹3,20,65,000 including ₹7,00,000 amenities',
+      'Advance payment listed as 50%; documentation charges marked extra',
+    ],
+    suitableFor: 'Ideal for villa buyers seeking larger formats near the Kollur growth belt.',
+    notSuitableFor: 'Not suitable for buyers looking for compact apartment inventory.',
+    images: imageGallery.sslrSuprabhatha,
   },
   {
     slug: 'skyven-kokapet',
