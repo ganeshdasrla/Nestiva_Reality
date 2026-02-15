@@ -1,4 +1,4 @@
-export const CONTACT_PHONE_DISPLAY = '+91-6301754949'
+export const CONTACT_PHONE_DISPLAY = '+91-630 175 49 49'
 export const CONTACT_PHONE_E164 = '916301754949'
 export const CONTACT_EMAIL = 'connect@srinestivaproptech'
 export const INSTAGRAM_HANDLE = 'srinestivaproptech'

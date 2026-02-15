@@ -143,6 +143,10 @@ export default function HomePage() {
             We shortlist only credible, RERA-compliant projects and work directly with builder managing partners to
             ensure clarity, confidence, and smooth closures.
           </p>
+          <p className="muted">
+            We curate verified projects across Kokapet, Financial District, Gachibowli, Narsingi, Tellapur,
+            Kondapur, and other growth corridors in Hyderabad.
+          </p>
           <div className="button-row">
             <Link className="button button-primary" to="/projects">
               Explore Curated Projects
@@ -155,7 +159,7 @@ export default function HomePage() {
       </section>
 
       <section className="section trust-section" style={trustSectionStyle}>
-        <h2 className="section-title">Trust</h2>
+        <h2 className="section-title">Why Choose Us</h2>
         <ul className="trust-list">
           {trustBullets.map((bullet) => (
             <li key={bullet}>{bullet}</li>

@@ -253,6 +253,18 @@ a {
   font-weight: 600;
 }
 
+.phone-link-content {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.32rem;
+}
+
+.phone-icon {
+  flex: 0 0 auto;
+  height: 0.95rem;
+  width: 0.95rem;
+}
+
 .site-main {
   padding: clamp(1.2rem, 2vw, 2rem) 0 clamp(2rem, 3vw, 3.4rem);
 }

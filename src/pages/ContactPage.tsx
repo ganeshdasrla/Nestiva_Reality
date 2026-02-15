@@ -4,6 +4,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE_DISPLAY,
+  CONTACT_PHONE_E164,
   INSTAGRAM_HANDLE,
   INSTAGRAM_URL,
   getMailToLink,
@@ -114,7 +115,7 @@ export default function ContactPage() {
         <div className="alternate-contact">
           <div>
             Phone:{' '}
-            <a className="text-link" href={`tel:${CONTACT_PHONE_DISPLAY.replace(/-/g, '')}`}>
+            <a className="text-link" href={`tel:+${CONTACT_PHONE_E164}`}>
               {CONTACT_PHONE_DISPLAY}
             </a>
           </div>

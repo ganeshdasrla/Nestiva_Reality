@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
-import { CONTACT_PHONE_DISPLAY, INSTAGRAM_HANDLE, INSTAGRAM_URL, getWhatsAppLink } from '../constants'
+import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_E164, INSTAGRAM_HANDLE, INSTAGRAM_URL, getWhatsAppLink } from '../constants'
 
 type NavigationItem =
   | { kind: 'route'; to: string; label: string }
@@ -88,8 +88,16 @@ export default function SiteLayout() {
               Book a Site Visit
             </Link>
             <div className="header-contact" aria-label="Contact details">
-              <a className="header-contact-link" href={`tel:${CONTACT_PHONE_DISPLAY.replace(/-/g, '')}`}>
-                {CONTACT_PHONE_DISPLAY}
+              <a className="header-contact-link" href={`tel:+${CONTACT_PHONE_E164}`}>
+                <span className="phone-link-content">
+                  <svg aria-hidden="true" className="phone-icon" viewBox="0 0 24 24">
+                    <path
+                      d="M6.62 10.79a15.07 15.07 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24 11.4 11.4 0 0 0 3.58.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.58 1 1 0 0 1-.24 1.01Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                  <span>{CONTACT_PHONE_DISPLAY}</span>
+                </span>
               </a>
             </div>
           </div>
