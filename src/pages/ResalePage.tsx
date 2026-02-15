@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 
 type ResalePriceBucket = 'under-75l' | '75l-1cr' | 'above-1cr'
@@ -114,6 +115,14 @@ export default function ResalePage() {
 
   return (
     <div className="page">
+      <Helmet>
+        <title>Resale Properties | Sri Nestiva PropTech</title>
+        <meta
+          name="description"
+          content="Explore resale opportunities with clarity—documentation support, pricing transparency, and curated visits in Hyderabad."
+        />
+        <link href="https://www.srinestivaproptech.in/resale" rel="canonical" />
+      </Helmet>
       <header className="page-header">
         <h1>Resale Properties</h1>
         <p>Verified resale inventory curated by Sri Nestiva PropTech.</p>

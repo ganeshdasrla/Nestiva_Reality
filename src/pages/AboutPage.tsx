@@ -1,6 +1,16 @@
+import { Helmet } from 'react-helmet-async'
+
 export default function AboutPage() {
   return (
     <div className="page">
+      <Helmet>
+        <title>About | Sri Nestiva PropTech</title>
+        <meta
+          name="description"
+          content="Learn about Sri Nestiva PropTech—Hyderabad-focused, builder-direct, approval-verified real estate advisory."
+        />
+        <link href="https://www.srinestivaproptech.in/about" rel="canonical" />
+      </Helmet>
       <header className="page-header">
         <h1>Built on Trust. Driven by Transparency.</h1>
       </header>

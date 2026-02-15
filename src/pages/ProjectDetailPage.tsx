@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { Link, useParams } from 'react-router-dom'
 import { getWhatsAppLink } from '../constants'
 import { projectBySlug } from '../data/projects'
@@ -6,23 +7,42 @@ import { handleProjectImageError } from '../utils/imageFallback'
 export default function ProjectDetailPage() {
   const { slug } = useParams()
   const project = slug ? projectBySlug.get(slug) : undefined
+  const pageTitle = project ? `${project.name} | Sri Nestiva PropTech` : 'Project Details | Sri Nestiva PropTech'
+  const pageDescription = project
+    ? `Explore verified details for ${project.name} with builder-direct coordination and transparent guidance from Sri Nestiva PropTech.`
+    : 'Explore verified project details with builder-direct coordination and transparent guidance from Sri Nestiva PropTech.'
+  const canonicalHref = slug
+    ? `https://www.srinestivaproptech.in/projects/${slug}`
+    : 'https://www.srinestivaproptech.in/projects'
 
   if (!project) {
     return (
-      <section className="notfound-card">
-        <h1>Project Not Found</h1>
-        <p>The project you requested is not available right now.</p>
-        <div className="thankyou-actions">
-          <Link className="button button-primary" to="/projects">
-            Back to Projects
-          </Link>
-        </div>
-      </section>
+      <>
+        <Helmet>
+          <title>{pageTitle}</title>
+          <meta content={pageDescription} name="description" />
+          <link href={canonicalHref} rel="canonical" />
+        </Helmet>
+        <section className="notfound-card">
+          <h1>Project Not Found</h1>
+          <p>The project you requested is not available right now.</p>
+          <div className="thankyou-actions">
+            <Link className="button button-primary" to="/projects">
+              Back to Projects
+            </Link>
+          </div>
+        </section>
+      </>
     )
   }
 
   return (
     <div className="page">
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta content={pageDescription} name="description" />
+        <link href={canonicalHref} rel="canonical" />
+      </Helmet>
       <header className="page-header">
         <h1>
           {project.name} - {project.area}

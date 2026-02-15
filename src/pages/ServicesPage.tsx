@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { getWhatsAppLink } from '../constants'
 
@@ -39,6 +40,14 @@ const serviceSections = [
 export default function ServicesPage() {
   return (
     <div className="page">
+      <Helmet>
+        <title>Services | Sri Nestiva PropTech</title>
+        <meta
+          name="description"
+          content="Builder-direct coordination, approval verification, loan and documentation support, curated site visits, and investor advisory across Hyderabad."
+        />
+        <link href="https://www.srinestivaproptech.in/services" rel="canonical" />
+      </Helmet>
       <header className="page-header">
         <h1>Services</h1>
         <p>Builder-direct, approval-verified support &mdash; from shortlist to closure.</p>

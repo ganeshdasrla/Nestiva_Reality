@@ -42,6 +42,15 @@
         "sameAs": []
       }
     </script>
+    <script>
+      (function () {
+        var redirectPath = sessionStorage.getItem('redirect')
+        if (redirectPath) {
+          sessionStorage.removeItem('redirect')
+          window.history.replaceState(null, '', redirectPath)
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

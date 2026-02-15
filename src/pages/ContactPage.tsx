@@ -1,5 +1,6 @@
 import type { FormEvent } from 'react'
 import { useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import {
   CONTACT_EMAIL,
@@ -49,6 +50,14 @@ export default function ContactPage() {
 
   return (
     <div className="page">
+      <Helmet>
+        <title>Contact | Sri Nestiva PropTech</title>
+        <meta
+          name="description"
+          content="Book a consultation with Sri Nestiva PropTech for approval-verified, builder-direct property advisory in Hyderabad."
+        />
+        <link href="https://www.srinestivaproptech.in/contact" rel="canonical" />
+      </Helmet>
       <header className="page-header">
         <h1>Talk to Sri Nestiva PropTech</h1>
         <p>Share your requirement and we'll shortlist the right options.</p>

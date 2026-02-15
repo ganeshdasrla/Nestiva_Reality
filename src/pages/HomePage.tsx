@@ -1,5 +1,6 @@
 import type { CSSProperties, FormEvent } from 'react'
 import { useEffect, useRef, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Link, useNavigate } from 'react-router-dom'
 import { getWhatsAppLink } from '../constants'
 import { projects } from '../data/projects'
@@ -122,6 +123,14 @@ export default function HomePage() {
 
   return (
     <div className="page home-page">
+      <Helmet>
+        <title>Sri Nestiva PropTech | Builder-Direct Real Estate Advisory in Hyderabad</title>
+        <meta
+          name="description"
+          content="Sri Nestiva PropTech is a builder-direct, approval-verified real estate advisory in Hyderabad. Explore RERA-aware, OC-first projects for premium apartments, villas, investors, and first-time buyers with transparent pricing and curated site visits."
+        />
+        <link href="https://www.srinestivaproptech.in/" rel="canonical" />
+      </Helmet>
       <section className="hero">
         <div aria-hidden="true" className="hero-carousel">
           {heroSlides.map((slide, index) => (
@@ -153,6 +162,9 @@ export default function HomePage() {
             </Link>
             <Link className="button button-secondary" to="/contact">
               Book a Consultation
+            </Link>
+            <Link className="button button-ghost" to="/services">
+              View Services
             </Link>
           </div>
         </div>
@@ -310,6 +322,19 @@ export default function HomePage() {
               <p>{faq.answer}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="section">
+        <h2 className="section-title">Hyderabad Investment Guide</h2>
+        <p>
+          Read our location-focused guide to compare major growth corridors and evaluate projects with a compliance-first
+          approach.
+        </p>
+        <div className="card-actions">
+          <Link className="button button-secondary" to="/blog/best-areas-to-buy-property-in-hyderabad">
+            Best Areas to Buy Property in Hyderabad (2026)
+          </Link>
         </div>
       </section>
 

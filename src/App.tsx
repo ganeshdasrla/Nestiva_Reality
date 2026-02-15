@@ -2,6 +2,7 @@ import { BrowserRouter, Link, Navigate, Route, Routes, useParams } from 'react-r
 import SiteLayout from './components/SiteLayout'
 import AboutPage from './pages/AboutPage'
 import AreaPage from './pages/AreaPage'
+import BlogBestAreasHyderabad from './pages/BlogBestAreasHyderabad'
 import ContactPage from './pages/ContactPage'
 import HomePage from './pages/HomePage'
 import ProjectDetailPage from './pages/ProjectDetailPage'
@@ -43,6 +44,7 @@ export default function App() {
           <Route element={<ThankYouPage />} path="/thank-you" />
           <Route element={<AboutPage />} path="/about" />
           <Route element={<AreaPage />} path="/areas/hyderabad" />
+          <Route element={<BlogBestAreasHyderabad />} path="/blog/best-areas-to-buy-property-in-hyderabad" />
           <Route element={<ResalePage />} path="/resale" />
           <Route element={<NotFoundPage />} path="*" />
         </Route>

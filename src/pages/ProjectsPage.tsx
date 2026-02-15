@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { getWhatsAppLink } from '../constants'
 import type { BudgetRange, ProjectAssetType, ProjectStatus } from '../data/projects'
@@ -55,6 +56,14 @@ export default function ProjectsPage() {
 
   return (
     <div className="page">
+      <Helmet>
+        <title>Verified Projects in Hyderabad | Sri Nestiva PropTech</title>
+        <meta
+          name="description"
+          content="Explore approval-verified, builder-confirmed residential projects in Hyderabad. Transparent pricing, curated site visits, and end-to-end advisory from Sri Nestiva PropTech."
+        />
+        <link href="https://www.srinestivaproptech.in/projects" rel="canonical" />
+      </Helmet>
       <header className="page-header">
         <h1>Projects Across Hyderabad</h1>
         <p>Curated projects shortlisted for quality, location, and delivery track record.</p>

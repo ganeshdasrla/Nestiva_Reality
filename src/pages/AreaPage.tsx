@@ -1,8 +1,17 @@
+import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 
 export default function AreaPage() {
   return (
     <div className="page">
+      <Helmet>
+        <title>Hyderabad Real Estate Advisory | Sri Nestiva PropTech</title>
+        <meta
+          name="description"
+          content="Curated, approval-verified projects across Hyderabad growth corridors with builder-direct coordination."
+        />
+        <link href="https://www.srinestivaproptech.in/areas/hyderabad" rel="canonical" />
+      </Helmet>
       <header className="page-header">
         <h1>Project Locations</h1>
       </header>
