@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "postbuild": "node scripts/copy-index-to-404.mjs",
     "deploy": "npm run build && gh-pages-clean && gh-pages -d dist -r https://github.com/ganeshdasrla/Nestiva_Reality.git -f",
     "lint": "eslint .",
     "preview": "vite preview"

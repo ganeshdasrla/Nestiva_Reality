@@ -29,3 +29,9 @@ tmp/belmond-brochure.pdf.png
 tmp/belmond-price-sheet.pdf
 tmp/belmond-price-sheet.pdf.png
 public/projects/fallback-property.svg
+
+# Local debug/temp artifacts
+tmp_live_home.html
+tmp-mobile*.png
+tmp_debug_*.png
+git-error-*
