@@ -7,7 +7,62 @@ import { handleProjectImageError } from '../utils/imageFallback'
 
 const featuredProjects = projects
 const heroSlides = projects.map((project) => ({ image: project.images[0], name: project.name }))
-const formatStatus = (status: (typeof projects)[number]['status']) => (status === 'Pre-Launch' ? 'Upcoming Villas' : status)
+
+const trustBullets = [
+  'Direct Managing Partner Access (no mediator layers)',
+  'Transparent Pricing (no inflated quotes / no hidden charges)',
+  'RERA-aware listings + approval verification',
+  'OC-first / handover-ready focus',
+  'Loan + legal + documentation support',
+  'Weekend curated site visits',
+  'Verified availability & builder-confirmed inventory (no guesswork)',
+]
+
+const builderDirectAdvantageCopy =
+  'We work directly with builder managing partners to confirm approvals, pricing, and availability\u2014ensuring transparent, faster closures without intermediary layers.'
+
+const whoWeHelpSegments = [
+  {
+    title: 'Premium Apartments (\u20B91Cr+)',
+    bullets: [
+      'Builder-verified inventory & pricing clarity',
+      'Negotiation support with builder teams',
+      'Smooth closing with end-to-end coordination',
+    ],
+  },
+  {
+    title: 'Villas & Gated Communities',
+    bullets: [
+      'Approval and title guidance (document-led)',
+      'Community & livability focused shortlisting',
+      'Curated visits based on your preferences',
+    ],
+  },
+  {
+    title: 'Investors',
+    bullets: [
+      'ROI / rental-yield oriented comparison',
+      'Location growth & exit potential assessment',
+      'Portfolio-style recommendations (not random listings)',
+    ],
+  },
+  {
+    title: 'First-time Home Buyers',
+    bullets: [
+      'Budget + EMI guidance and bank coordination',
+      'Transparent cost sheet breakdown',
+      'Step-by-step booking and documentation support',
+    ],
+  },
+] as const
+
+const investorFocusBullets = [
+  'ROI-oriented property shortlisting',
+  'Rental yield and appreciation context',
+  'Location growth evaluation',
+  'Exit-friendly project assessment',
+  'Portfolio-style recommendations',
+]
 
 const faqs = [
   {
@@ -21,6 +76,11 @@ const faqs = [
   {
     question: 'Do you cover all Hyderabad areas?',
     answer: 'Yes, based on client requirements.',
+  },
+  {
+    question: 'Do you work with individual agents?',
+    answer:
+      'We coordinate directly with builder teams and managing partners to ensure verified inventory, transparent pricing, and smoother documentation processes.',
   },
 ]
 
@@ -78,22 +138,18 @@ export default function HomePage() {
         <div className="hero-overlay" />
         <div className="hero-content">
           <h1>Curated Homes Across Hyderabad</h1>
-          <p>
-            Verified residential and commercial opportunities shortlisted based on budget, location, and
-            timeline.
+          <p>Builder-direct. Approval-verified. Transparent deals &mdash; guided end-to-end.</p>
+          <p className="muted">
+            We shortlist only credible, RERA-compliant projects and work directly with builder managing partners to
+            ensure clarity, confidence, and smooth closures.
           </p>
           <div className="button-row">
             <Link className="button button-primary" to="/projects">
-              View Projects
+              Explore Curated Projects
             </Link>
-            <a
-              className="button button-secondary"
-              href={getWhatsAppLink('Hi Sri Nestiva PropTech, I am looking for curated options in Hyderabad.')}
-              rel="noreferrer"
-              target="_blank"
-            >
-              WhatsApp Us
-            </a>
+            <Link className="button button-secondary" to="/contact">
+              Book a Consultation
+            </Link>
           </div>
         </div>
       </section>
@@ -101,12 +157,41 @@ export default function HomePage() {
       <section className="section trust-section" style={trustSectionStyle}>
         <h2 className="section-title">Trust</h2>
         <ul className="trust-list">
-          <li>RERA-aware listings</li>
-          <li>OC-first approach</li>
-          <li>Loan and legal assistance</li>
-          <li>Weekend site visits</li>
+          {trustBullets.map((bullet) => (
+            <li key={bullet}>{bullet}</li>
+          ))}
         </ul>
         <p className="muted">We shortlist properties so you don't waste weekends visiting unsuitable options.</p>
+        <div className="builder-advantage">
+          <h3>Builder-Direct Advantage</h3>
+          <p>{builderDirectAdvantageCopy}</p>
+        </div>
+      </section>
+
+      <section className="section audience-section">
+        <h2 className="section-title">Who We Help</h2>
+        <div className="audience-grid">
+          {whoWeHelpSegments.map((segment) => (
+            <article className="audience-card" key={segment.title}>
+              <h3>{segment.title}</h3>
+              <ul className="audience-list">
+                {segment.bullets.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section">
+        <h2 className="section-title">Invest with Clarity. Not Just Emotion.</h2>
+        <ul className="trust-list">
+          {investorFocusBullets.map((bullet) => (
+            <li key={bullet}>{bullet}</li>
+          ))}
+        </ul>
+        <p className="muted">We focus on fundamentals, not hype.</p>
       </section>
 
       <section className="section featured-strip">
@@ -119,7 +204,7 @@ export default function HomePage() {
               onClick={() => scrollFeatured('left')}
               type="button"
             >
-              ‹
+              &#x2039;
             </button>
             <button
               aria-label="Scroll projects right"
@@ -127,7 +212,7 @@ export default function HomePage() {
               onClick={() => scrollFeatured('right')}
               type="button"
             >
-              ›
+              &#x203A;
             </button>
           </div>
         </div>
@@ -144,7 +229,6 @@ export default function HomePage() {
               <h3>{project.name}</h3>
               <p>{project.zone}</p>
               <p>Price Band: {project.priceBand}</p>
-              <p>Status: {formatStatus(project.status)}</p>
               <div className="card-actions">
                 <Link className="button button-secondary" to={`/projects/${project.slug}`}>
                   Get Details
@@ -173,9 +257,9 @@ export default function HomePage() {
               Budget Range
               <select id="home-budget" name="budget" required>
                 <option value="">Select budget range</option>
-                <option value="under-2">Up to ₹2 Cr</option>
-                <option value="2-3">₹2 Cr - ₹3 Cr</option>
-                <option value="above-3">Above ₹3 Cr</option>
+                <option value="under-2">Up to &#8377;2 Cr</option>
+                <option value="2-3">&#8377;2 Cr - &#8377;3 Cr</option>
+                <option value="above-3">Above &#8377;3 Cr</option>
               </select>
             </label>
 
@@ -223,6 +307,31 @@ export default function HomePage() {
             </article>
           ))}
         </div>
+      </section>
+
+      <section className="section cta-strip">
+        <h2 className="section-title">Talk to a Builder-Direct Advisor</h2>
+        <p>
+          Book a quick call and share your budget, preferred locations, and timeline. We&apos;ll shortlist
+          approval-verified, builder-confirmed options and plan a curated site visit.
+        </p>
+        <div className="cta-panel">
+          <Link className="button button-primary" to="/contact">
+            Book a Call
+          </Link>
+          <a
+            className="button button-secondary"
+            href={getWhatsAppLink('Hi Sri Nestiva PropTech, I would like to book a consultation.')}
+            rel="noreferrer"
+            target="_blank"
+          >
+            WhatsApp Us
+          </a>
+          <Link className="button button-ghost" to="/contact">
+            Schedule a Site Visit
+          </Link>
+        </div>
+        <p className="form-note">No pressure. No spam. Just verified options.</p>
       </section>
     </div>
   )

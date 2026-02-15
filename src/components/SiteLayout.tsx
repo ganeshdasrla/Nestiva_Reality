@@ -8,6 +8,7 @@ type NavigationItem =
 
 const navigationItems: NavigationItem[] = [
   { kind: 'route', to: '/projects', label: 'Projects' },
+  { kind: 'route', to: '/services', label: 'Services' },
   { kind: 'route', to: '/resale', label: 'Resale' },
   { kind: 'route', to: '/areas/hyderabad', label: 'Areas' },
   { kind: 'route', to: '/about', label: 'About' },
@@ -22,7 +23,17 @@ export default function SiteLayout() {
   const location = useLocation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
+  function scrollToTop() {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  }
+
+  function handleMenuNavigation() {
+    setIsMenuOpen(false)
+    scrollToTop()
+  }
+
   useEffect(() => {
+    scrollToTop()
     setIsMenuOpen(false)
   }, [location.pathname])
 
@@ -30,7 +41,7 @@ export default function SiteLayout() {
     <div className="site-shell">
       <header className="site-header">
         <div className="container header-inner">
-          <Link className="brand" to="/">
+          <Link className="brand" onClick={scrollToTop} to="/">
             <span className="brand-name">Sri Nestiva PropTech</span>
             <span className="brand-tagline">Curated Homes Across Hyderabad</span>
           </Link>
@@ -53,7 +64,7 @@ export default function SiteLayout() {
                   key={item.href}
                   className="nav-link"
                   href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={handleMenuNavigation}
                   rel="noreferrer"
                   target="_blank"
                 >
@@ -63,7 +74,7 @@ export default function SiteLayout() {
                 <NavLink
                   key={item.to}
                   className={({ isActive }) => getNavClassName(isActive)}
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={handleMenuNavigation}
                   to={item.to}
                 >
                   {item.label}
@@ -73,7 +84,7 @@ export default function SiteLayout() {
           </nav>
 
           <div className="header-right">
-            <Link className="button button-primary header-cta" to="/contact">
+            <Link className="button button-primary header-cta" onClick={scrollToTop} to="/contact">
               Book a Site Visit
             </Link>
             <div className="header-contact" aria-label="Contact details">
@@ -95,6 +106,9 @@ export default function SiteLayout() {
         <div className="container footer-inner">
           <div className="footer-brand">Sri Nestiva PropTech</div>
           <div className="footer-tagline">Curated Homes Across Hyderabad</div>
+          <div className="footer-tagline">
+            Sri Nestiva PropTech &ndash; Curated, Builder-Direct Real Estate Advisory in Hyderabad.
+          </div>
           <div className="footer-tagline">
             Instagram:{' '}
             <a className="text-link" href={INSTAGRAM_URL} rel="noreferrer" target="_blank">

@@ -21,8 +21,6 @@ export default function ProjectDetailPage() {
     )
   }
 
-  const statusLabel = project.status === 'Pre-Launch' ? 'Upcoming Villas' : project.status
-
   return (
     <div className="page">
       <header className="page-header">
@@ -61,7 +59,7 @@ export default function ProjectDetailPage() {
             </div>
             <div className="meta-item">
               <span>Status</span>
-              <strong>{statusLabel}</strong>
+              <strong>{project.status}</strong>
             </div>
             {project.amenitiesCount ? (
               <div className="meta-item">

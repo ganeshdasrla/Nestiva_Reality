@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage'
 import ProjectDetailPage from './pages/ProjectDetailPage'
 import ProjectsPage from './pages/ProjectsPage'
 import ResalePage from './pages/ResalePage'
+import ServicesPage from './pages/ServicesPage'
 import ThankYouPage from './pages/ThankYouPage'
 
 function NotFoundPage() {
@@ -35,6 +36,7 @@ export default function App() {
         <Route element={<SiteLayout />}>
           <Route element={<HomePage />} index />
           <Route element={<ProjectsPage />} path="/projects" />
+          <Route element={<ServicesPage />} path="/services" />
           <Route element={<ProjectDetailPage />} path="/projects/:slug" />
           <Route element={<LegacyProjectRedirect />} path="/project/:slug" />
           <Route element={<ContactPage />} path="/contact" />

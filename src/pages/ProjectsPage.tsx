@@ -5,11 +5,10 @@ import type { BudgetRange, ProjectAssetType, ProjectStatus } from '../data/proje
 import { projects } from '../data/projects'
 import { handleProjectImageError } from '../utils/imageFallback'
 
-const stageOrder: ProjectStatus[] = ['Ready to Move', 'Ongoing', 'Pre-Launch']
+const stageOrder: ProjectStatus[] = ['Ready to Move', 'Ongoing']
 const stageLabels: Record<ProjectStatus, string> = {
   'Ready to Move': 'Ready to Move',
   Ongoing: 'Ongoing',
-  'Pre-Launch': 'Upcoming Villas',
 }
 
 export default function ProjectsPage() {

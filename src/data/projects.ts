@@ -1,4 +1,4 @@
-export type ProjectStatus = 'Ongoing' | 'Ready to Move' | 'Pre-Launch'
+export type ProjectStatus = 'Ongoing' | 'Ready to Move'
 export type BudgetRange = 'under-2' | '2-3' | 'above-3'
 export type ProjectAssetType = 'Apartment' | 'Villa' | 'Commercial'
 import venetia1 from '../assets/projects/prr/venetia-1.jpg'
