@@ -1,5 +1,5 @@
-export const CONTACT_PHONE_DISPLAY = '+91-8328697916'
-export const CONTACT_PHONE_E164 = '918328697916'
+export const CONTACT_PHONE_DISPLAY = '+91-6301754949'
+export const CONTACT_PHONE_E164 = '916301754949'
 export const CONTACT_EMAIL = 'connect@srinestivaproptech'
 export const INSTAGRAM_HANDLE = 'srinestivaproptech'
 export const INSTAGRAM_URL = `https://instagram.com/${INSTAGRAM_HANDLE}`
