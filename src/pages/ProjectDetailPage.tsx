@@ -9,11 +9,66 @@ export default function ProjectDetailPage() {
   const project = slug ? projectBySlug.get(slug) : undefined
   const pageTitle = project ? `${project.name} | Sri Nestiva PropTech` : 'Project Details | Sri Nestiva PropTech'
   const pageDescription = project
-    ? `Explore verified details for ${project.name} with builder-direct coordination and transparent guidance from Sri Nestiva PropTech.`
+    ? `${project.name} in ${project.area}, ${project.zone}. ${project.configurations}. ${project.priceBand}. Explore verified project details with Sri Nestiva PropTech.`
     : 'Explore verified project details with builder-direct coordination and transparent guidance from Sri Nestiva PropTech.'
   const canonicalHref = slug
     ? `https://www.srinestivaproptech.in/projects/${slug}`
     : 'https://www.srinestivaproptech.in/projects'
+  const primaryImage = project?.images[0]
+  const structuredData = project
+    ? {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Residence',
+            additionalProperty: [
+              {
+                '@type': 'PropertyValue',
+                name: 'Configurations',
+                value: project.configurations,
+              },
+              {
+                '@type': 'PropertyValue',
+                name: 'Price Band',
+                value: project.priceBand,
+              },
+              {
+                '@type': 'PropertyValue',
+                name: 'Approvals',
+                value: project.approvals,
+              },
+            ],
+            description: pageDescription,
+            image: project.images.slice(0, 3),
+            name: project.name,
+            url: canonicalHref,
+          },
+          {
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                item: 'https://www.srinestivaproptech.in/',
+                name: 'Home',
+                position: 1,
+              },
+              {
+                '@type': 'ListItem',
+                item: 'https://www.srinestivaproptech.in/projects',
+                name: 'Projects',
+                position: 2,
+              },
+              {
+                '@type': 'ListItem',
+                item: canonicalHref,
+                name: project.name,
+                position: 3,
+              },
+            ],
+          },
+        ],
+      }
+    : null
 
   if (!project) {
     return (
@@ -21,6 +76,7 @@ export default function ProjectDetailPage() {
         <Helmet>
           <title>{pageTitle}</title>
           <meta content={pageDescription} name="description" />
+          <meta content="noindex,follow" name="robots" />
           <link href={canonicalHref} rel="canonical" />
         </Helmet>
         <section className="notfound-card">
@@ -41,7 +97,22 @@ export default function ProjectDetailPage() {
       <Helmet>
         <title>{pageTitle}</title>
         <meta content={pageDescription} name="description" />
+        <meta content="index,follow" name="robots" />
         <link href={canonicalHref} rel="canonical" />
+        <meta content={pageTitle} property="og:title" />
+        <meta content={pageDescription} property="og:description" />
+        <meta content="article" property="og:type" />
+        <meta content={canonicalHref} property="og:url" />
+        {primaryImage ? <meta content={primaryImage} property="og:image" /> : null}
+        <meta content="summary_large_image" name="twitter:card" />
+        <meta content={pageTitle} name="twitter:title" />
+        <meta content={pageDescription} name="twitter:description" />
+        {primaryImage ? <meta content={primaryImage} name="twitter:image" /> : null}
+        {structuredData ? (
+          <script type="application/ld+json">
+            {JSON.stringify(structuredData)}
+          </script>
+        ) : null}
       </Helmet>
       <header className="page-header">
         <h1>
